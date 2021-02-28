@@ -1,0 +1,7 @@
+[server]
+host = "0.0.0.0"
+port = 8080
+
+[urls]
+gh = "https://github.com"
+yt = "https://youtube.com"
