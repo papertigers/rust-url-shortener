@@ -30,6 +30,7 @@ impl Deref for ValidUri {
 pub struct Server {
     pub host: IpAddr,
     pub port: u16,
+    pub threads: Option<usize>,
 }
 
 #[derive(Debug, Deserialize)]

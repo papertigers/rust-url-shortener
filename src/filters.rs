@@ -5,15 +5,15 @@ use warp::Filter;
 
 use crate::App;
 
-enum MappingUri {
+enum MappedUri {
     Found(Uri),
     NotFound,
 }
 
-impl warp::Reply for MappingUri {
+impl warp::Reply for MappedUri {
     fn into_response(self) -> warp::reply::Response {
         match self {
-            Self::Found(uri) => warp::redirect(uri).into_response(),
+            Self::Found(uri) => warp::redirect::temporary(uri).into_response(),
             Self::NotFound => StatusCode::NOT_FOUND.into_response(),
         }
     }
@@ -38,8 +38,8 @@ pub fn url_shortener(
         .and(warp::path::end())
         .and(with_app(app))
         .map(|path, app: Arc<App>| match app.config.urls.get(&path) {
-            Some(uri) => MappingUri::Found((*uri).clone()),
-            None => MappingUri::NotFound,
+            Some(uri) => MappedUri::Found((*uri).clone()),
+            None => MappedUri::NotFound,
         });
 
     index.or(redirect)
