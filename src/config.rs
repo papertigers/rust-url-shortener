@@ -1,6 +1,7 @@
 use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
 use std::fs::File;
 use std::io::{BufReader, Read};
+use std::net::IpAddr;
 use std::path::Path;
 use std::{collections::BTreeMap, ops::Deref};
 use warp::http::Uri;
@@ -27,7 +28,7 @@ impl Deref for ValidUri {
 
 #[derive(Debug, Deserialize)]
 pub struct Server {
-    pub host: String,
+    pub host: IpAddr,
     pub port: u16,
 }
 

@@ -19,7 +19,7 @@ async fn main() -> std::io::Result<()> {
         config,
     });
 
-    let url_shortener = filters::url_shortener(app);
-    warp::serve(url_shortener).run(([0, 0, 0, 0], 8080)).await;
+    let url_shortener = filters::url_shortener(app.clone());
+    warp::serve(url_shortener).run((app.config.server.host, app.config.server.port)).await;
     Ok(())
 }
