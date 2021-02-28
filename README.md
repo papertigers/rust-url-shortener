@@ -6,12 +6,13 @@ A small daemon that acts as a URL shortener.
 
 I worked for a company that had a similar internal tool where employees would
 type in their browser `go/<shortcode>` (ex: `go/jira`) and be forwarded to the
-appropriate URL. I always found this useful and @bahamas10 wrote us a similar
+appropriate URL. I always found this useful and [@bahamas10] wrote us a similar
 [service] many years ago. I wanted to rewrite this in rust as an excuse to learn
 more about [warp], and because I find it easier to maintain rust services on my
 home infrastructure compared to nodejs.
 
 [service]: https://github.com/bahamas10/node-url-shortener
+[@bahamas10]: https://github.com/bahamas10
 [warp]: https://docs.rs/warp/
 
 
