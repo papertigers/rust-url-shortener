@@ -28,10 +28,19 @@ fn with_app(
 pub fn url_shortener(
     app: Arc<App>,
 ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+    let index_json = warp::get()
+        .and(warp::path::end())
+        .and(with_app(app.clone()))
+        .and(warp::header::exact_ignore_case(
+            "accept",
+            "application/json",
+        ))
+        .map(|app: Arc<App>| warp::reply::json(&app.config.urls));
+
     let index = warp::get()
         .and(warp::path::end())
         .and(with_app(app.clone()))
-        .map(|app: Arc<App>| warp::reply::json(&app.config.urls));
+        .map(|app: Arc<App>| warp::reply::html(app.index_html.clone()));
 
     let redirect = warp::get()
         .and(warp::path::param::<String>())
@@ -42,5 +51,5 @@ pub fn url_shortener(
             None => MappedUri::NotFound,
         });
 
-    index.or(redirect)
+    index_json.or(index).or(redirect)
 }

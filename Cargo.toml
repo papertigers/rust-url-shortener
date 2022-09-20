@@ -1,7 +1,10 @@
 [package]
 name = "url-shortener"
-version = "0.1.0"
-authors = ["Mike Zeller <mike@mikezeller.net>"]
+version = "0.2.0"
+authors = [
+	"Mike Zeller <mike@mikezeller.net>",
+	"Dave Eddy <dave@daveeddy.com>"
+]
 edition = "2018"
 
 [dependencies]
@@ -10,6 +13,7 @@ toml = "0.5.8"
 anyhow = "1.0.38"
 slog = "2.7.0"
 slog-term = "2.8.0"
+minijinja = "0.15.0"
 
 [dependencies.serde]
 version = "1.0.123"

@@ -423,6 +423,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "minijinja"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "359c4820413be7706e93999171652e140578384f85faac14cb22d350bd0fbabf"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "mio"
 version = "0.7.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1038,9 +1047,10 @@ dependencies = [
 
 [[package]]
 name = "url-shortener"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
+ "minijinja",
  "serde",
  "slog",
  "slog-term",

@@ -22,12 +22,18 @@ home infrastructure compared to nodejs.
 [server]
 host = "0.0.0.0"
 port = 8080
+# number of worker threads handling requests
 threads = 1
+
+[index]
+title = "my website"
+text_color = "white"
+bg_color_top = "black"
+bg_color_bottom = "#157a19"
 
 [urls]
 gh = "https://github.com"
 yt = "https://youtube.com"
-foo = "http://10.0.1.23:3030"
 ```
 
 ## Example Usage
@@ -49,12 +55,6 @@ Feb 28 18:55:26.705 INFO 127.0.0.1 GET "/dne" 404 curl/7.75.0 (105.353µs)
 ### Client Side
 
 ```
-$ curl -s localhost:8080/ | jq
-{
-  "gh": "https://github.com/",
-  "yt": "https://youtube.com/"
-}
-
 $ curl -i localhost:8080/gh
 HTTP/1.1 307 Temporary Redirect
 location: https://github.com/
@@ -71,4 +71,25 @@ $ curl -i localhost:8080/dne
 HTTP/1.1 404 Not Found
 content-length: 0
 date: Sun, 28 Feb 2021 18:55:26 GMT
+```
+
+HTML is generated for the index page by default:
+
+```
+$ curl -s localhost:8080
+<!doctype html>
+<html>
+	<head>
+		<title>my website</title>
+... snipped ...
+```
+
+This can be overridden by explicitly accepting `json`:
+
+```
+$ curl -s -H 'accept: application/json' localhost:8080/ | jq
+{
+  "gh": "https://github.com/",
+  "yt": "https://youtube.com/"
+}
 ```
