@@ -33,9 +33,18 @@ pub struct Server {
     pub threads: Option<usize>,
 }
 
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Index {
+    pub title: String,
+    pub text_color: String,
+    pub bg_color_top: String,
+    pub bg_color_bottom: String,
+}
+
 #[derive(Debug, Deserialize)]
 pub struct Config {
     pub server: Server,
+    pub index: Index,
     pub urls: BTreeMap<String, ValidUri>,
 }
 

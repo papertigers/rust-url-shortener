@@ -4,6 +4,12 @@ port = 8080
 # number of worker threads handling requests
 threads = 1
 
+[index]
+title = "my website"
+text_color = "white"
+bg_color_top = "black"
+bg_color_bottom = "#157a19"
+
 [urls]
 gh = "https://github.com"
 yt = "https://youtube.com"
